@@ -1,0 +1,8 @@
+bin/
+obj/
+node_modules/
+dist/
+TestResults/
+coverage/
+.env*
+appsettings.*.json
