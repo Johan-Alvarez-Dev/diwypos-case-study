@@ -1,19 +1,20 @@
-# Arquitectura pública
+# Public Architecture
 
-## Aplicación central
+## Central application
 
-React consume una API ASP.NET Core. JWT aporta identidad, rol y tenant; cada operación de negocio aplica ese contexto. PostgreSQL mantiene pedidos, pagos, inventario y trabajos de impresión.
+React consumes an ASP.NET Core API. JWT resolves user, role, and tenant. PostgreSQL stores orders, payments, inventory, and print jobs.
 
-## Impresión resiliente
+## Resilient printing
 
-1. Crear o modificar una orden genera un `PrintJob` persistido.
-2. SignalR notifica con baja latencia.
-3. El agente autentica y reclama trabajo pendiente.
-4. Formatea ESC/POS y envía por TCP.
-5. Confirma éxito o registra fallo/reintento.
+1. Creating or updating an order writes a durable `PrintJob`.
+2. SignalR notifies the local agent for low latency.
+3. Polling discovers jobs missed during disconnects.
+4. The authenticated agent claims a job.
+5. It formats ESC/POS bytes and sends them over TCP.
+6. Success/failure is persisted for retry and audit.
 
-SignalR acelera; la tabla es la garantía. El agente funciona como servicio en Linux/Windows y no requiere el SDK en producción.
+SignalR accelerates delivery; the database guarantees it.
 
-## Inventario
+## Inventory and cost
 
-Cantidades se normalizan a `g`, `ml` o `unidad`. Las unidades personalizadas no se convierten sin equivalencia. El costo unitario base y el snapshot por pedido evitan reescribir utilidad histórica.
+Mass, volume, and count normalize to base units. Custom units are never guessed. Decimal arithmetic is used for quantities and money. Each sold item stores a cost snapshot so future catalog changes do not alter past margin.

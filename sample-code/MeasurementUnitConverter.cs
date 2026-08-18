@@ -12,8 +12,7 @@ public static class MeasurementUnitConverter
 {
     public static BaseMeasurement ToBase(decimal quantity, MeasurementUnit unit)
     {
-        if (quantity < 0)
-            throw new ArgumentOutOfRangeException(nameof(quantity), "Quantity cannot be negative.");
+        ArgumentOutOfRangeException.ThrowIfNegative(quantity);
 
         return unit switch
         {
@@ -31,10 +30,8 @@ public static class MeasurementUnitConverter
 
     public static decimal CostPerBaseUnit(decimal cost, decimal purchasedQuantity, MeasurementUnit unit)
     {
-        if (cost < 0)
-            throw new ArgumentOutOfRangeException(nameof(cost));
-        if (purchasedQuantity <= 0)
-            throw new ArgumentOutOfRangeException(nameof(purchasedQuantity));
+        ArgumentOutOfRangeException.ThrowIfNegative(cost);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(purchasedQuantity);
 
         var measurement = ToBase(purchasedQuantity, unit);
         return cost / measurement.Quantity;

@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <NoWarn>$(NoWarn);CA1707</NoWarn>
     <RootNamespace>DiwyPOS.PublicSample.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>

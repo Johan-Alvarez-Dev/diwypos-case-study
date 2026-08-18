@@ -1,7 +1,7 @@
-# Roadmap público
+# Public Roadmap
 
-- Profundizar pruebas de concurrencia e idempotencia.
-- Añadir observabilidad de jobs sin contenido sensible.
-- Validar más modelos/codificaciones ESC/POS.
-- Fortalecer despliegue multiinstancia y Azure SignalR.
-- Publicar demo con tenant y datos sintéticos.
+- Expand concurrency and idempotency coverage.
+- Add content-safe print-job observability.
+- Validate additional ESC/POS models and code pages.
+- Strengthen multi-instance SignalR deployment.
+- Publish an isolated synthetic tenant demo.

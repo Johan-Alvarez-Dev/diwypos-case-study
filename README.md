@@ -1,73 +1,78 @@
-# DiwyPOS
+# DiwyPOS — Restaurant Point of Sale
 
-### Punto de venta multi-tenant con inventario, cocina y operación en tiempo real
+### Multi-tenant ordering, inventory, payments, kitchen workflows, and resilient ESC/POS printing
 
-[![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet)](https://dotnet.microsoft.com/) [![React 19](https://img.shields.io/badge/React-19-149ECA?logo=react)](https://react.dev/) [![Tests](https://img.shields.io/badge/test_classes-11-22C55E)](./docs/architecture.md) [![Core privado](https://img.shields.io/badge/core-private-111827)](#alcance-público)
+[![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet)](https://dotnet.microsoft.com/) [![SignalR](https://img.shields.io/badge/realtime-SignalR-512BD4)](https://dotnet.microsoft.com/apps/aspnet/signalr) [![React 19](https://img.shields.io/badge/React-19-149ECA?logo=react)](https://react.dev/) [![Private tests](https://img.shields.io/badge/private_test_classes-11-22C55E)](#verified-evidence)
 
-DiwyPOS coordina mesas, pedidos, cocina, pagos, inventario y reportes para restaurantes. Incluye una cola persistente de comandas y un agente local que habla ESC/POS con impresoras de red.
+DiwyPOS coordinates tables, orders, kitchen status, payments, inventory, and reporting. A persistent print queue and local .NET agent deliver ESC/POS tickets even when real-time notifications are interrupted.
 
-> Este repositorio contiene arquitectura, contratos y una muestra segura. El código productivo y la configuración de cada negocio permanecen privados.
+> Restaurant data, printer addresses, tenant configuration, and production source remain private. Public samples are independently written.
 
-## Problema
+## The problem
 
-Un POS no puede perder una comanda por una desconexión ni mezclar datos entre negocios. También debe conservar costos históricos aunque cambie el precio de un ingrediente. DiwyPOS trata persistencia, aislamiento tenant y operación degradada como requisitos centrales.
+A POS must not lose a kitchen ticket during a network interruption or mix data between businesses. It must also preserve historical cost even when ingredient prices change.
 
-## Mi responsabilidad
+## My role
 
-Desarrollo full-stack: API .NET, EF Core, JWT/roles, multi-tenancy, SignalR, modelado de pedidos e inventario, agente de impresión y frontend React responsive.
+I implemented the ASP.NET Core API, EF Core model, JWT/role/tenant boundary, SignalR updates, order and inventory services, print agent, and responsive React interface.
 
-## Capacidades demostradas
+## Engineering highlights
 
-- ASP.NET Core .NET 10 y PostgreSQL.
-- JWT con claims de tenant y rol.
-- Pedidos, pagos, mesas, inventario y dashboard.
-- Unidades normalizadas para masa, volumen y conteo.
-- Snapshot de costo por item para utilidad histórica.
-- Cola persistente + SignalR + polling como garantía.
-- Agente Linux/Windows autocontenido y transporte ESC/POS TCP.
-- 11 clases de pruebas entre API y agente de impresión.
+- ASP.NET Core .NET 10 with PostgreSQL persistence.
+- JWT claims for user, role, and tenant context.
+- Orders, order items, payments, tables, recipes, and inventory movements.
+- Normalized mass, volume, and count units.
+- Per-order-item cost snapshots for historical gross-margin reporting.
+- Persistent print jobs plus SignalR notification and polling recovery.
+- Self-contained Linux/Windows print agent using ESC/POS over TCP.
+- Eleven private test classes spanning API and print agent.
 
-## Arquitectura
+## Architecture
 
 ```mermaid
 flowchart LR
-  Web["React · POS / Cocina"] --> API["ASP.NET Core"]
-  API --> DB["PostgreSQL · fuente de verdad"]
+  POS["React POS / Kitchen"] --> API["ASP.NET Core"]
+  API --> DB["PostgreSQL · source of truth"]
   API --> Hub["SignalR"]
-  Hub --> Agent["Print Agent .NET"]
+  Hub --> Agent[".NET print agent"]
   DB --> Agent
-  Agent --> Printer["ESC/POS · TCP 9100"]
+  Agent --> Printer["ESC/POS · TCP"]
 ```
 
-Detalles: [arquitectura](./docs/architecture.md), [decisiones](./docs/decisions.md), [roadmap](./docs/roadmap.md).
+Read [architecture](./docs/architecture.md), [decisions](./docs/decisions.md), and [engineering evidence](./docs/engineering-evidence.md).
 
-## Muestra pública
+## Public code samples
 
-`MeasurementUnitConverter` normaliza cantidades y costos con tipos decimales, validación estricta y conversiones explícitas.
+| Sample | Demonstrates |
+| --- | --- |
+| `MeasurementUnitConverter` | Decimal-safe normalization and cost conversion |
+| `OrderCostSnapshotService` | Recipe-cost aggregation and immutable sale snapshot |
+| `TenantOrderPolicy` | Server-side tenant/role authorization |
+| xUnit tests | Unit conversion, cost, tenant isolation, invalid inputs |
 
 ```bash
 dotnet test tests/DiwyPOS.PublicSample.Tests.csproj
 ```
 
-Consulta [código](./sample-code/MeasurementUnitConverter.cs), [pruebas](./tests/MeasurementUnitConverterTests.cs) y [OpenAPI](./api/openapi.yaml).
+## Verified evidence
 
-## Demo
+- Print jobs remain durable while the local agent or printer is offline.
+- Additions and reprints are explicit auditable job types.
+- Quantities are stored in base units and rendered in user-preferred units.
+- Private tests cover authentication, orders, menu, payments, tables, inventory, finance, printing, and ESC/POS formatting.
 
-La instancia del restaurante no es pública. La demo prevista usará un tenant aislado, menú sintético y ninguna impresora real.
+## Challenges addressed
 
-## Resultados verificables
+1. Treating real-time delivery as an optimization, not the source of truth.
+2. Isolating each tenant at the server boundary.
+3. Normalizing recipes and stock without floating-point money errors.
+4. Connecting cloud software to LAN-only hardware.
+5. Preserving historical cost when recipes or ingredient prices change.
 
-- Los trabajos de impresión sobreviven a la desconexión del agente.
-- Adiciones y reimpresiones son eventos explícitos y auditables.
-- Costos se congelan por item y cantidades se guardan en unidad base.
-- La suite privada cubre auth, pedidos, pagos, mesas, inventario, finanzas, impresión y formato ESC/POS.
+## Demo and boundaries
 
-## Alcance público
+The restaurant instance is private. A future demo will use an isolated tenant, synthetic menu, and no physical printer.
 
-| Público | Privado |
-| --- | --- |
-| Diseño de cola y agente | Direcciones de impresoras y credenciales |
-| Conversor de unidades y tests | Código productivo y datos de ventas |
-| OpenAPI reducido | Configuración tenant completa |
+## License
 
-Seguridad: [SECURITY.md](./SECURITY.md).
+MIT applies only to the public samples.

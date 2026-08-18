@@ -1,10 +1,10 @@
 openapi: 3.1.0
 info:
-  title: DiwyPOS Public Contract
+  title: DiwyPOS Public API Contract
   version: 1.0.0
 paths:
   /api/public/menu:
     get:
-      summary: Obtiene un menú público sanitizado
+      summary: Return a sanitized public menu
       responses:
-        '200': { description: Categorías y productos disponibles }
+        '200': { description: Available categories and menu items }

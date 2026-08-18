@@ -1,21 +1,21 @@
-# Decisiones técnicas públicas
+# Technical Decisions
 
-## Tenant en cada operación
+## Tenant context on every operation
 
-El contexto del tenant proviene del token y se aplica en servidor. Ocultar UI no es aislamiento.
+The API derives tenant identity from the authenticated principal. Client-side filtering is not authorization.
 
-## Persistencia antes que tiempo real
+## Persistence before real-time delivery
 
-La cola de impresión es fuente de verdad; SignalR es una optimización.
+A durable queue guarantees printing; SignalR only reduces latency.
 
-## Agente local para hardware
+## Local hardware agent
 
-La nube no accede directamente a la LAN. Un servicio local autenticado entrega bytes ESC/POS.
+A cloud API cannot directly reach restaurant LAN hardware. An authenticated local service owns printer transport.
 
-## Unidad base
+## Base measurement units
 
-Masa, volumen y conteo se normalizan para comparar stock y receta sin ambigüedad.
+Normalized quantities make stock and recipes comparable while preserving display preferences.
 
-## Snapshot de costo
+## Cost snapshots
 
-Cada item conserva el costo estimado al vender; cambios futuros no alteran reportes históricos.
+Historical reports use cost captured at sale time rather than the latest recipe price.

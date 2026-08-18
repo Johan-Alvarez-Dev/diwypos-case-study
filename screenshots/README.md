@@ -1,3 +1,5 @@
-# Plan de capturas
+# Screenshot Plan
 
-Con datos ficticios: mapa de mesas, flujo de pedido, pantalla de cocina, inventario normalizado y estado de impresión. Ocultar ventas reales, nombres, IP y claves.
+Planned fictional captures: table map, order flow, kitchen screen, normalized inventory, and print status.
+
+No real sales, staff names, printer IP addresses, tenant identifiers, or agent keys may appear.
