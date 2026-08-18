@@ -3,10 +3,15 @@
 ### Multi-tenant ordering, inventory, payments, kitchen workflows, and resilient ESC/POS printing
 
 [![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet)](https://dotnet.microsoft.com/) [![SignalR](https://img.shields.io/badge/realtime-SignalR-512BD4)](https://dotnet.microsoft.com/apps/aspnet/signalr) [![React 19](https://img.shields.io/badge/React-19-149ECA?logo=react)](https://react.dev/) [![Private tests](https://img.shields.io/badge/private_test_classes-11-22C55E)](#verified-evidence)
+[![Public sample CI](https://github.com/Johan-Alvarez-Dev/diwypos-case-study/actions/workflows/ci.yml/badge.svg)](https://github.com/Johan-Alvarez-Dev/diwypos-case-study/actions/workflows/ci.yml)
 
 DiwyPOS coordinates tables, orders, kitchen status, payments, inventory, and reporting. A persistent print queue and local .NET agent deliver ESC/POS tickets even when real-time notifications are interrupted.
 
 > Restaurant data, printer addresses, tenant configuration, and production source remain private. Public samples are independently written.
+
+[Open the live demo](https://diwy-pos-web.vercel.app/) · [Review the architecture](./docs/architecture.md) · [Inspect the samples](./sample-code) · [Read the API contract](./api/openapi.yaml)
+
+![DiwyPOS restaurant operations sign-in screen](./screenshots/live-demo.png)
 
 ## The problem
 
@@ -71,7 +76,7 @@ dotnet test tests/DiwyPOS.PublicSample.Tests.csproj
 
 ## Demo and boundaries
 
-The restaurant instance is private. A future demo will use an isolated tenant, synthetic menu, and no physical printer.
+[Open the live demo](https://diwy-pos-web.vercel.app/). Restaurant records, printer addresses, tenant configuration, and the production source remain private.
 
 ## License
 
