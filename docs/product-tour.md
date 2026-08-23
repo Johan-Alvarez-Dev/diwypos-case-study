@@ -2,6 +2,16 @@
 
 These captures use a synthetic restaurant tenant and demo operator. Theme-aware views switch automatically between light and dark variants. Open the [live demo](https://diwy-pos-web.vercel.app/) to explore the current interface.
 
+## Quick walkthrough
+
+The silent preview covers menu operations, order entry, and table state.
+
+<p align="center">
+  <a href="../media/diwypos-walkthrough.gif">
+    <img src="../media/diwypos-walkthrough.gif" alt="DiwyPOS menu, ordering, and table operations walkthrough" width="640">
+  </a>
+</p>
+
 ## Operations dashboard
 
 The main workspace prioritizes orders in progress, payment state, table availability, and low-stock warnings for fast operational scanning.

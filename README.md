@@ -86,9 +86,15 @@ Explore the [product tour](./docs/product-tour.md) for ordering, inventory, tabl
 
 ## Video walkthrough
 
-> **Coming soon.** A guided tour of ordering, kitchen status, inventory deduction, payments, and resilient printing is being recorded.
+The 5-second preview covers menu operations, order entry, and table state. Authentication is excluded so no account details or credentials are exposed.
 
-The repository reserves the [media area](./media/README.md) for the final video or optimized GIF.
+<p align="center">
+  <a href="./media/diwypos-walkthrough.gif">
+    <img src="./media/diwypos-walkthrough.gif" alt="DiwyPOS menu, ordering, and table operations walkthrough" width="640">
+  </a>
+</p>
+
+Open the animation at full size or review the [annotated product tour](./docs/product-tour.md).
 
 ## License
 

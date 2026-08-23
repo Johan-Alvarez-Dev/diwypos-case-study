@@ -1,11 +1,11 @@
-# DiwyPOS video walkthrough
+# DiwyPOS walkthrough assets
 
-This directory is reserved for the public product walkthrough currently in production.
+## Published
 
-Recommended deliverables:
+- [`diwypos-walkthrough.gif`](./diwypos-walkthrough.gif) — optimized silent preview used by the main README and product tour.
 
-- `diwypos-walkthrough.mp4` — 60–120 second narrated product tour.
-- `diwypos-walkthrough.gif` — short silent preview optimized for the main README.
-- `diwypos-walkthrough-cover.webp` — accessible poster image linked to the full video.
+The preview starts after authentication and uses a synthetic restaurant tenant. Real orders, staff names, tenant identifiers, printer addresses, credentials, and operational data are excluded.
 
-Use the demo tenant only. Remove real orders, staff names, tenant identifiers, printer addresses, credentials, and operational data before publishing.
+## Optional next asset
+
+A future `diwypos-walkthrough.mp4` can provide a 60–120 second narrated tour. Keep the GIF as the fast recruiter preview and link the longer video rather than embedding it directly.
