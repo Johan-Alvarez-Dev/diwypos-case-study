@@ -9,9 +9,13 @@ DiwyPOS coordinates tables, orders, kitchen status, payments, inventory, and rep
 
 > Restaurant data, printer addresses, tenant configuration, and production source remain private. Public samples are independently written.
 
-[Open the live demo](https://diwy-pos-web.vercel.app/) · [Review the architecture](./docs/architecture.md) · [Inspect the samples](./sample-code) · [Read the API contract](./api/openapi.yaml)
+[Open the live demo](https://diwy-pos-web.vercel.app/) · [Product tour](./docs/product-tour.md) · [Architecture](./docs/architecture.md) · [Code samples](./sample-code) · [Video](#video-walkthrough)
 
-![DiwyPOS restaurant operations sign-in screen](./screenshots/live-demo.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./screenshots/diwypos-dashboard-dark-900.webp 900w, ./screenshots/diwypos-dashboard-dark-1600.webp 1600w">
+  <source media="(prefers-color-scheme: light)" srcset="./screenshots/diwypos-dashboard-900.webp 900w, ./screenshots/diwypos-dashboard-1600.webp 1600w">
+  <img src="./screenshots/diwypos-dashboard-1600.webp" alt="DiwyPOS operations dashboard with order, payment, table, and stock status" width="1600">
+</picture>
 
 ## The problem
 
@@ -77,6 +81,14 @@ dotnet test tests/DiwyPOS.PublicSample.Tests.csproj
 ## Demo and boundaries
 
 [Open the live demo](https://diwy-pos-web.vercel.app/). Restaurant records, printer addresses, tenant configuration, and the production source remain private.
+
+Explore the [product tour](./docs/product-tour.md) for ordering, inventory, table management, and tenant-aware authentication.
+
+## Video walkthrough
+
+> **Coming soon.** A guided tour of ordering, kitchen status, inventory deduction, payments, and resilient printing is being recorded.
+
+The repository reserves the [media area](./media/README.md) for the final video or optimized GIF.
 
 ## License
 
