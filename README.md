@@ -9,7 +9,7 @@ DiwyPOS coordinates tables, orders, kitchen status, payments, inventory, and rep
 
 > Restaurant data, printer addresses, tenant configuration, and production source remain private. Public samples are independently written.
 
-[Open the live demo](https://diwy-pos-web.vercel.app/) · [Product tour](./docs/product-tour.md) · [Architecture](./docs/architecture.md) · [Code samples](./sample-code) · [Video](#video-walkthrough)
+[Open the live demo](https://diwypos-demo-johan-web.azurewebsites.net/demo) · [Product tour](./docs/product-tour.md) · [Architecture](./docs/architecture.md) · [Code samples](./sample-code) · [Video](#video-walkthrough)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./screenshots/diwypos-dashboard-dark-900.webp 900w, ./screenshots/diwypos-dashboard-dark-1600.webp 1600w">
@@ -80,7 +80,7 @@ dotnet test tests/DiwyPOS.PublicSample.Tests.csproj
 
 ## Demo and boundaries
 
-[Open the live demo](https://diwy-pos-web.vercel.app/). Restaurant records, printer addresses, tenant configuration, and the production source remain private.
+[Open the live demo](https://diwypos-demo-johan-web.azurewebsites.net/demo). Restaurant records, printer addresses, tenant configuration, and the production source remain private.
 
 Explore the [product tour](./docs/product-tour.md) for ordering, inventory, table management, and tenant-aware authentication.
 

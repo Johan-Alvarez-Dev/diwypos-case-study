@@ -1,6 +1,6 @@
 # DiwyPOS product tour
 
-These captures use a synthetic restaurant tenant and demo operator. Theme-aware views switch automatically between light and dark variants. Open the [live demo](https://diwy-pos-web.vercel.app/) to explore the current interface.
+These captures use a synthetic restaurant tenant and demo operator. Theme-aware views switch automatically between light and dark variants. Open the [live demo](https://diwypos-demo-johan-web.azurewebsites.net/demo) to explore the current interface.
 
 ## Quick walkthrough
 
